@@ -1,0 +1,11 @@
+C:\Users\Luka\Downloads\CoreLaunch\src\CoreLaunch.Domain\bin\Debug\net8.0\CoreLaunch.Domain.deps.json
+C:\Users\Luka\Downloads\CoreLaunch\src\CoreLaunch.Domain\bin\Debug\net8.0\CoreLaunch.Domain.dll
+C:\Users\Luka\Downloads\CoreLaunch\src\CoreLaunch.Domain\bin\Debug\net8.0\CoreLaunch.Domain.pdb
+C:\Users\Luka\Downloads\CoreLaunch\src\CoreLaunch.Domain\obj\Debug\net8.0\CoreLaunch.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Luka\Downloads\CoreLaunch\src\CoreLaunch.Domain\obj\Debug\net8.0\CoreLaunch.Domain.AssemblyInfoInputs.cache
+C:\Users\Luka\Downloads\CoreLaunch\src\CoreLaunch.Domain\obj\Debug\net8.0\CoreLaunch.Domain.AssemblyInfo.cs
+C:\Users\Luka\Downloads\CoreLaunch\src\CoreLaunch.Domain\obj\Debug\net8.0\CoreLaunch.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Luka\Downloads\CoreLaunch\src\CoreLaunch.Domain\obj\Debug\net8.0\CoreLaunch.Domain.dll
+C:\Users\Luka\Downloads\CoreLaunch\src\CoreLaunch.Domain\obj\Debug\net8.0\refint\CoreLaunch.Domain.dll
+C:\Users\Luka\Downloads\CoreLaunch\src\CoreLaunch.Domain\obj\Debug\net8.0\CoreLaunch.Domain.pdb
+C:\Users\Luka\Downloads\CoreLaunch\src\CoreLaunch.Domain\obj\Debug\net8.0\ref\CoreLaunch.Domain.dll

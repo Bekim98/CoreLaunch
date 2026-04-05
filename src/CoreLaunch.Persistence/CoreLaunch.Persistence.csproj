@@ -1,0 +1,23 @@
+﻿ <Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Entity Framework Core paketleri -->
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- İŞTE EKSİK OLAN KÖPRÜ BURASI! 👇 -->
+    <!-- Hem Domain'i hem de Application katmanını buraya eklemeliyiz -->
+    <ProjectReference Include="..\CoreLaunch.Domain\CoreLaunch.Domain.csproj" />
+    <ProjectReference Include="..\CoreLaunch.Application\CoreLaunch.Application.csproj" />
+  </ItemGroup>
+
+</Project>
