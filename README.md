@@ -1,20 +1,23 @@
-# 🚀 CoreLaunch — .NET Core 8 SaaS Starter Kit
+ # CoreLaunch 🚀
 
-A production-ready, clean architecture SaaS boilerplate built with .NET Core 8. Skip the boilerplate, focus on your product.
-
-![.NET](https://img.shields.io/badge/.NET-8.0-512BD4?style=flat-square&logo=dotnet)
-![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
-![Swagger](https://img.shields.io/badge/API-Swagger%20UI-85EA2D?style=flat-square&logo=swagger)
+**.NET 8 SaaS Starter Kit** - Clean Architecture + Docker + JWT + MediatR
 
 ## ✨ Features
+- Clean Architecture (Domain-Driven Design)
+- MediatR + CQRS  
+- EF Core + SQLite
+- JWT Authentication
+- **Docker Multi-Stage Build** ✅
+- Global Exception Handler ✅
+- Swagger UI ✅
 
-- ✅ Clean Architecture (Domain, Application, Persistence, WebApi)
-- ✅ CQRS with MediatR
-- ✅ Entity Framework Core + SQL Server
-- ✅ Unit of Work Pattern
-- ✅ JWT Authentication & Authorization
-- ✅ Swagger / OpenAPI 3.0
-- ✅ Global Exception Handling
-- ✅ Ready-to-extend product module
+## 🐳 Docker
+```bash
+docker build -t corelaunch-api .
+docker run -p 5000:8080 corelaunch-api
+```
 
-## 🏗️ Project Structure
+**http://localhost:5000/swagger**
+
+## 📦 Gumroad: $49
+[Saat 19:00'da satışa çıkıyor!](link)
