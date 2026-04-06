@@ -1,10 +1,9 @@
+ using CoreLaunch.Domain.Entities;
+
 namespace CoreLaunch.Application.Interfaces;
 
-/// <summary>
-/// Veritabanı işlemlerinin atomik (tek seferde ve bütünsel) 
-/// olarak tamamlanmasını sağlayan Unit of Work arayüzü.
-/// </summary>
 public interface IUnitOfWork
 {
+    IProductRepository Products { get; }
     Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 }

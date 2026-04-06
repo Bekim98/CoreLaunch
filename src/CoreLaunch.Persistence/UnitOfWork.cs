@@ -1,21 +1,18 @@
- using CoreLaunch.Application.Interfaces; 
+using CoreLaunch.Application.Interfaces;
+using CoreLaunch.Persistence.Repositories;
 
 namespace CoreLaunch.Persistence;
 
-// İsmi düzelttik: IUunitOfWork -> IUnitOfWork ✅
-public class UnitOfWork : IUnitOfWork 
+public class UnitOfWork : IUnitOfWork
 {
     private readonly ApplicationDbContext _context;
+
+    public IProductRepository Products { get; }
 
     public UnitOfWork(ApplicationDbContext context)
     {
         _context = context;
-    }
-
-    // Metotlar: Interface ile %100 uyumlu olmalı!
-    public async Task<int> SaveChangesAsync()
-    {
-        return await _context.SaveChangesAsync();
+        Products = new ProductRepository(context);
     }
 
     public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

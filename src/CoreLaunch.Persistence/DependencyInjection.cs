@@ -9,7 +9,7 @@ public static class DependencyInjection
     public static IServiceCollection AddPersistenceServices(this IServiceCollection services, string connectionString)
     {
         services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseSqlServer(connectionString));
+            options.UseSqlite(connectionString));
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 

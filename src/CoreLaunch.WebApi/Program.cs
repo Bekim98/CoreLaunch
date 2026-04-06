@@ -1,34 +1,79 @@
-// ✅ DOĞRU - using'ler EN ÜSTTE
+using System.Text;
 using CoreLaunch.Application;
+using CoreLaunch.Application.Interfaces;
+using CoreLaunch.Infrastructure.Services;
 using CoreLaunch.Persistence;
-
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1. Adım: Connection String'i (Veritabanı adresini) ayarlar dosyasından al
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-// 2. Adım: KATMANLARI SİSTEME ENJEKTE ET (En kritik nokta!)
-// Bu satırlar, hazırladığımız o devasa mimariyi ayağa kaldıran anahtarlardır.
-builder.Services.AddPersistenceServices(connectionString!); // Veritabanı ve UnitOfWork hazır!
-builder.Services.AddApplicationServices();                 // MediatR ve Validatorlar hazır!
-
-// 3. Adım: Web API Standart Servisleri (Swagger, Controller vb.)
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(); // Test ekranını (UI) açar
+
+// Swagger with JWT support
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "CoreLaunch API", Version = "v1" });
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme { Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "Bearer" } },
+            Array.Empty<string>()
+        }
+    });
+});
+
+// DbContext
+builder.Services.AddPersistenceServices(
+    builder.Configuration.GetConnectionString("DefaultConnection")!);
+
+// Application
+builder.Services.AddApplicationServices();
+
+// Auth
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+// JWT Authentication
+var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+var key = Encoding.UTF8.GetBytes(jwtSettings["Secret"]!);
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = jwtSettings["Issuer"],
+            ValidAudience = jwtSettings["Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(key)
+        };
+    });
+
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-// 4. Adım: HTTP İstek Hattı (Middleware Pipeline)
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();   // Swagger arayüzünü aktif et
-    app.UseSwaggerUI(); // Swagger görselini göster
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
+app.UseAuthentication();
 app.UseAuthorization();
-app.MapControllers(); // Controller'larımızı (Endpoint) dünyaya aç!
+
+app.MapControllers();
+
 
 app.Run();

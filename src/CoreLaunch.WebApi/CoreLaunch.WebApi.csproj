@@ -9,13 +9,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.25" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CoreLaunch.Application\CoreLaunch.Application.csproj" />
     <ProjectReference Include="..\CoreLaunch.Persistence\CoreLaunch.Persistence.csproj" />
+    <ProjectReference Include="..\CoreLaunch.Infrastructure\CoreLaunch.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
